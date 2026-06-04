@@ -6,5 +6,7 @@ USER root
 COPY --from=python-stage /usr/bin/python3* /usr/bin/
 COPY --from=python-stage /usr/lib/python3* /usr/lib/
 COPY --from=python-stage /usr/lib/libpython3* /usr/lib/
-RUN ln -sf /usr/bin/python3 /usr/bin/python
+RUN ln -sf /usr/bin/python3 /usr/bin/python && \
+    mkdir -p /home/node/.n8n && \
+    chown -R node:node /home/node
 USER node
